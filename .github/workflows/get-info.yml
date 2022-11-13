@@ -18,9 +18,9 @@ jobs:
           GITHUB_REFNAME: ${{ github.ref_name }}
 
       - name: "Echo secret"
-        run: echo "Configuration secret: ${config-secret}"
+        run: echo "Configuration secret: $config_secret"
         with:
-          config-secret: ${{ inputs.config.repo_secret }}
+          config_secret: ${{ inputs.config.repo_secret }}
 
       - name: "Get tag name"
         run: echo "The tag name is ${{ steps.tag-without-version.outputs.tag_name }}"
