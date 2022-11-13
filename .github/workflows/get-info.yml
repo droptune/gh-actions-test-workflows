@@ -19,7 +19,7 @@ jobs:
 
       - name: "Echo secret"
         run: echo $CONFIG_SECRET
-        with:
+        env:
           CONFIG_SECRET: ${{ secrets.repo_secret }}
 
       - name: "Get tag name"
