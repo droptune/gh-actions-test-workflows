@@ -18,7 +18,7 @@ jobs:
           GITHUB_REFNAME: ${{ github.ref_name }}
 
       - name: "Echo secret"
-        run: echo "Configuration secret: $config_secret"
+        run: echo "Configuration secret: "$CONFIG_SECRET
         with:
           config_secret: ${{ secrets.repo_secret }}
 
