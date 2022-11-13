@@ -1,0 +1,26 @@
+on:
+  workflow_call:
+    secrets:
+      repo_secret:
+        required: true
+
+jobs:
+  get-tag:
+    name: get tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Echo tag"
+        id: tag-without-version
+        shell: bash
+        run: |
+          echo "tag_name=${GITHUB_REFNAME%-*}" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_REFNAME: ${{ github.ref_name }}
+
+      - name: "Echo secret"
+        run: echo "Configuration secret: ${config-secret}"
+        with:
+          config-secret: ${{ inputs.config.repo_secret }}
+
+      - name: "Get tag name"
+        run: echo "The tag name is ${{ steps.tag-without-version.outputs.tag_name }}"
